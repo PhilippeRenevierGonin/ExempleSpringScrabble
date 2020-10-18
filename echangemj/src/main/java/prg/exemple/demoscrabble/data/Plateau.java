@@ -21,4 +21,8 @@ public class Plateau {
     public String toString() {
         return "[Plateau](contien "+listeDeMots.size()+" mot(s))";
     }
+
+    public void addMotPlacé(MotPositionne motJoué) {
+        this.listeDeMots.add(motJoué);
+    }
 }

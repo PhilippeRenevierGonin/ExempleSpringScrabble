@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import prg.exemple.demoscrabble.data.Identification;
+import prg.exemple.demoscrabble.data.MotPositionne;
 
 @RestController
 public class MoteurWebControlleur {
@@ -35,10 +36,10 @@ public class MoteurWebControlleur {
         return true;
     }
 
-    public String demanderAuJoueurDeJoueur() {
-        String resultat = "";
+    public MotPositionne demanderAuJoueurDeJoueur() {
+        MotPositionne resultat = new MotPositionne();
         if (joueurId != null) {
-            resultat = restTemplate.postForObject(joueurId.getUrl()+"/jouer", moteur.getPlateau(), String.class);
+            resultat = restTemplate.postForObject(joueurId.getUrl()+"/jouer", moteur.getPlateau(), MotPositionne.class);
         }
         return resultat ;
     }

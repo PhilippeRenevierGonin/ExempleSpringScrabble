@@ -16,3 +16,16 @@ Il faut configurer le port de l'application Spring
 Client devient joueur, il s'identifie auprès de Moteur
 Serveur devient Moteur, il accepte un joueur puis lance la partie
 Moteur demande au joueur de jouer
+(les adresses sont codées en dur)
+
+## étape4 : échange d'objet (JSON est masquée)
+Ajout de paramètre, échange d'objet 
+Joueur -> Moteur
+ * Le joueur s’identifie (nom, url)
+ 
+Moteur -> Joueur
+ * Plateau : état du jeu 
+ * Lettres : listes des lettres pour composer le mots
+ 
+Joueur -> Moteur
+ * Coup : le mot jouer

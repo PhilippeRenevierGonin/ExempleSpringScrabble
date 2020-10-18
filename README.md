@@ -25,7 +25,7 @@ Joueur -> Moteur
  
 Moteur -> Joueur
  * Plateau : état du jeu 
- * Lettres : listes des lettres pour composer le mots
+ * ~~Lettres : listes des lettres pour composer le mots~~
  
 Joueur -> Moteur
  * Coup : le mot jouer

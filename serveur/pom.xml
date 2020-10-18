@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>prg.exemple</groupId>
+        <artifactId>demoscrabble</artifactId>
+        <version>1</version>
+    </parent>
+
+
+    <groupId>prg.exemple</groupId>
+    <artifactId>serveur</artifactId>
+    <version>1</version>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version> <!-- à ne pas changer : c'est la version du plugin (et pas de java) -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>prg.exemple.demoscrabble.DemoscrabbleApplication</mainClass>  <!-- à changer : classe avec point d'entrée pour votre projet -->
+                    <!-- argument de la commande java (en plus du nom de la classe et du classpath -->
+
+                    <!-- arguments récupérés dans le main -->
+                    <!--
+                        <arguments>
+                                <argument>argument1</argument>
+                        </arguments>
+                    -->
+
+                    <!-- arguments de configuration système -->
+                    <!--
+                        <systemProperties>
+                                <systemProperty>
+                                    <key>myproperty</key>
+                                    <value>myvalue</value>
+                                </systemProperty>
+                        </systemProperties>
+                     -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

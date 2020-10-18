@@ -3,6 +3,7 @@ package prg.exemple.demoscrabble;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,5 +51,9 @@ public class MoteurWebControlleur {
             resultat = joueurId.getNom();
         }
         return resultat ;
+    }
+
+    public void envoyerFin() {
+        restTemplate.exchange(joueurId.getUrl()+"/finir", HttpMethod.POST, null, Void.class);
     }
 }

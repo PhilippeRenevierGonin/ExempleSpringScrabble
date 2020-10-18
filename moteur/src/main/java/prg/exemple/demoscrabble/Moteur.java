@@ -36,6 +36,10 @@ public class Moteur implements Runnable {
         }
         System.out.println("Moteur > la partie est finie "+plateau);
         partie = null;
+
+        ctrl.envoyerFin();
+        // fin brutale (pour abréger sur travis).
+        System.exit(0);
     }
 
 

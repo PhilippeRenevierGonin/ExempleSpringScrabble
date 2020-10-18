@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import prg.exemple.demoscrabble.data.MotPositionne;
 import prg.exemple.demoscrabble.data.Plateau;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 public class JoueurWebControlleur {
 
@@ -18,5 +20,25 @@ public class JoueurWebControlleur {
     public MotPositionne jouer(@RequestBody Plateau plateau) {
         System.out.println("Joueur > on me demande de jouer sur "+plateau);
         return joueur.jouer();
+    }
+
+    @PostMapping("/finir")
+    public void finir() {
+        // fin brutale (pour abréger sur travis), mais il faut répondre un peu après
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Joueur > fin du programme");
+                try {
+                    TimeUnit.MILLISECONDS.sleep(5);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    System.exit(0);
+                }
+
+            }
+        });
+        t.start();
     }
 }

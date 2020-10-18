@@ -12,6 +12,7 @@ import prg.exemple.demoscrabble.data.Identification;
 @RestController
 public class MoteurWebControlleur {
     int value = 0;
+
     private Identification joueurId;
 
     @Bean
@@ -38,6 +39,14 @@ public class MoteurWebControlleur {
         String resultat = "";
         if (joueurId != null) {
             resultat = restTemplate.getForObject(joueurId.getUrl()+"/jouer", String.class);
+        }
+        return resultat ;
+    }
+
+    public String getNomJoueur() {
+        String resultat = "[NULL]";
+        if (joueurId != null) {
+            resultat = joueurId.getNom();
         }
         return resultat ;
     }

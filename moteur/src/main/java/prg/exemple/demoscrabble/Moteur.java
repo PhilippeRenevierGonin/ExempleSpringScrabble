@@ -25,7 +25,7 @@ public class Moteur implements Runnable {
     @Override
     public void run() {
         String motJoué = ctrl.demanderAuJoueurDeJoueur() ;
-        System.out.println("Moteur > le joueur a joué : "+motJoué);
+        System.out.println("Moteur > le "+ctrl.getNomJoueur()+" a joué : "+motJoué);
         System.out.println("Moteur > la partie est finie");
         partie = null;
     }

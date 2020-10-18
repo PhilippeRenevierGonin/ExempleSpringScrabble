@@ -29,3 +29,7 @@ Moteur -> Joueur
  
 Joueur -> Moteur
  * Coup : le mot jouer
+ 
+ 
+ ## étape5 : échange d'objet (JSON est masquée)
+branchement sur travis-ci

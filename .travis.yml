@@ -8,3 +8,7 @@ install:
 
 script:
   - mvn test
+  - cd moteur
+  - mvn exec:java &
+  - cd ../joueur
+  - mvn exec:java

@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class Client {
+public class JoueurApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Client.class, args);
+        SpringApplication.run(JoueurApplication.class, args);
     }
 
         @Bean public RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -22,9 +22,9 @@ public class Client {
     @Bean
     public CommandLineRunner unClient(RestTemplate restTemplate) {
         return args -> {
-            /// retrieving the value
-            Integer val = restTemplate.getForObject("http://localhost:8080/get/",Integer.class);
-            System.out.println("client > la valeur lue est : "+val);
+            /// connexion
+            Boolean val = restTemplate.getForObject("http://localhost:8080/connexion/",Boolean.class);
+            System.out.println("Joueur > état de la connexion : "+val);
         };
     }
 }

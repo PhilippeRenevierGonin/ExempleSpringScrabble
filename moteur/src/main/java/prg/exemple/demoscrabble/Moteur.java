@@ -29,9 +29,11 @@ public class Moteur implements Runnable {
 
     @Override
     public void run() {
-        MotPositionne motJoué = ctrl.demanderAuJoueurDeJoueur() ;
-        System.out.println("Moteur > "+ctrl.getNomJoueur()+" a joué : "+motJoué+ " (il n'y a pas de vérificatoin)");
-        plateau.addMotPlacé(motJoué);
+        for(int nbTour = 0; nbTour < 2; nbTour++) {
+            MotPositionne motJoué = ctrl.demanderAuJoueurDeJoueur() ;
+            System.out.println("Moteur > "+ctrl.getNomJoueur()+" a joué : "+motJoué+ " (il n'y a pas de vérificatoin)");
+            plateau.addMotPlacé(motJoué);
+        }
         System.out.println("Moteur > la partie est finie "+plateau);
         partie = null;
     }

@@ -1,3 +1,38 @@
+# exclusion des dossiers contenant les élements générés
+**/out/
+**/target/
+**/build/
+# pour la javadoc (selon le nom du dossier pouvant la contenir)
+**/javadoc/
+**/apidocs/
+**/testapidocs/
+
+# pour intellij
+**/*.iml
+.gradle
+**/local.properties
+# on peut enlever tout le dossier .idea : il sera alors à refaire par chaque developpeur
+**/.idea/
+# ou on peut enlever cibler plus finement, mais on laisse alors des traces d'intellij dans le git
+#.idea/workspace.xml
+#.idea/libraries
+#.idea/inspectionProfiles/
+#.idea/vcs.xml
+
+
+
+#pour Eclipse
+**/.project
+**/.classpath
+**/.settings/
+# les dossiers du workspace eclipse... normalement pas dans le git, à adapter au besoin
+**/.metadata/
+**/.recommanders/
+
+# pour les mac...
+**/.DS_Store
+
+
 # Compiled class file
 *.class
 

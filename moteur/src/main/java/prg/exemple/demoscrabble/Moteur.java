@@ -3,6 +3,7 @@ package prg.exemple.demoscrabble;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import prg.exemple.demoscrabble.data.Plateau;
 
 @Component
 @Scope("singleton")
@@ -12,9 +13,12 @@ public class Moteur implements Runnable {
 
     Thread partie ;
 
+    Plateau plateau;
+
     public void lancerPartie() {
         if (partie == null) {
             System.out.println("Moteur > la partie est démarrée");
+            plateau = new Plateau();
             partie = new Thread(this);
             partie.start();
         } else {
@@ -25,8 +29,14 @@ public class Moteur implements Runnable {
     @Override
     public void run() {
         String motJoué = ctrl.demanderAuJoueurDeJoueur() ;
-        System.out.println("Moteur > le "+ctrl.getNomJoueur()+" a joué : "+motJoué);
+        System.out.println("Moteur > "+ctrl.getNomJoueur()+" a joué : "+motJoué);
         System.out.println("Moteur > la partie est finie");
         partie = null;
     }
+
+
+    public Plateau getPlateau() {
+        return plateau;
+    }
+
 }

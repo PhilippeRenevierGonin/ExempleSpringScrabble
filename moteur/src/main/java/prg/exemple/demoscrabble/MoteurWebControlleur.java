@@ -38,7 +38,7 @@ public class MoteurWebControlleur {
     public String demanderAuJoueurDeJoueur() {
         String resultat = "";
         if (joueurId != null) {
-            resultat = restTemplate.getForObject(joueurId.getUrl()+"/jouer", String.class);
+            resultat = restTemplate.postForObject(joueurId.getUrl()+"/jouer", moteur.getPlateau(), String.class);
         }
         return resultat ;
     }

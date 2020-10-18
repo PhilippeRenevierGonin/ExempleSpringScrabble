@@ -1,8 +1,10 @@
 package prg.exemple.demoscrabble.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import prg.exemple.demoscrabble.data.Plateau;
 
 @RestController
 public class JoueurWebControlleur {
@@ -11,9 +13,9 @@ public class JoueurWebControlleur {
     Joueur joueur ;
 
 
-    @GetMapping("/jouer")
-    public String jouer() {
-        System.out.println("Joueur > on me demande de jouer");
+    @PostMapping("/jouer")
+    public String jouer(@RequestBody Plateau plateau) {
+        System.out.println("Joueur > on me demande de jouer sur "+plateau);
         return joueur.jouer();
     }
 }

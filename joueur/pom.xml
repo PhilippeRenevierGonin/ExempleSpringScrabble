@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>prg.exemple</groupId>
-    <artifactId>client</artifactId>
+    <artifactId>joueur</artifactId>
     <version>1</version>
 
     <build>
@@ -28,7 +28,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>prg.exemple.demoscrabble.client.Client</mainClass>  <!-- à changer : classe avec point d'entrée pour votre projet -->
+                    <mainClass>prg.exemple.demoscrabble.joueur.JoueurApplication</mainClass>  <!-- à changer : classe avec point d'entrée pour votre projet -->
                     <!-- argument de la commande java (en plus du nom de la classe et du classpath -->
 
                     <!-- arguments récupérés dans le main -->

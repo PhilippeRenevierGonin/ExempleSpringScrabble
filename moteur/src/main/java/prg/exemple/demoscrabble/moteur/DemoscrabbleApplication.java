@@ -1,4 +1,4 @@
-package prg.exemple.demoscrabble.serveur;
+package prg.exemple.demoscrabble.moteur;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

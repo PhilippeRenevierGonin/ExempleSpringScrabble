@@ -16,8 +16,8 @@
 	<description>Demo scrabble project for Spring Boot</description>
 
 	<modules>
-		<module>serveur</module>
-		<module>client</module>
+		<module>moteur</module>
+		<module>joueur</module>
 	</modules>
 
 	<packaging>pom</packaging>

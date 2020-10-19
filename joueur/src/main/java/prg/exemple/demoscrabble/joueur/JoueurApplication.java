@@ -1,4 +1,4 @@
-package prg.exemple.demoscrabble.client;
+package prg.exemple.demoscrabble.joueur;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class Client {
+public class JoueurApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Client.class, args);
+        SpringApplication.run(JoueurApplication.class, args);
     }
 
     @Bean
@@ -23,8 +23,8 @@ public class Client {
     public CommandLineRunner unClient(RestTemplate restTemplate) {
         return args -> {
             /// retrieving the value
-            Integer val = restTemplate.getForObject("http://localhost:8080/get/",Integer.class);
-            System.out.println("client > la valeur lue est : "+val);
+            Boolean val = restTemplate.getForObject("http://localhost:8080/connexion/",Boolean.class);
+            System.out.println("client > la connexion est-elle acceptée ? "+val);
         };
     }
 }

@@ -16,6 +16,7 @@
 	<description>Demo scrabble project for Spring Boot</description>
 
 	<modules>
+		<module>echangemj</module>
 		<module>moteur</module>
 		<module>joueur</module>
 	</modules>
@@ -47,10 +48,7 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+
 		</plugins>
 	</build>
 

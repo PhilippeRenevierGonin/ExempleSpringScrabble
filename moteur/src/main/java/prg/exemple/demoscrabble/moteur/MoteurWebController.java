@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import prg.exemple.demoscrabble.data.EtatDuJeu;
 import prg.exemple.demoscrabble.data.Identification;
+import prg.exemple.demoscrabble.data.MotPositionne;
 
 @RestController
 public class MoteurWebController {
@@ -32,8 +34,8 @@ public class MoteurWebController {
         return true;
     }
 
-    public String demanderAuJoueurDeJoueur() {
-        return restTemplate.getForObject("http://localhost:8081/jouer", String.class);
+    public MotPositionne demanderAuJoueurDeJoueur(EtatDuJeu plateau) {
+        return restTemplate.postForObject("http://localhost:8081/jouer", plateau, MotPositionne.class);
     }
 
     public String getNomJoueur() {

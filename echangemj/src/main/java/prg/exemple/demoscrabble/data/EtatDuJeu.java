@@ -2,11 +2,14 @@ package prg.exemple.demoscrabble.data;
 
 import java.util.ArrayList;
 
-public class Plateau {
+public class EtatDuJeu {
     ArrayList<MotPositionne> listeDeMots ;
+    ArrayList<Character> chariot;
 
-    public Plateau() {
+
+    public EtatDuJeu() {
         listeDeMots = new ArrayList<>();
+        chariot = new ArrayList<>();
     }
 
     public ArrayList<MotPositionne> getListeDeMots() {
@@ -17,9 +20,21 @@ public class Plateau {
         this.listeDeMots = listeDeMots;
     }
 
+    public ArrayList<Character> getChariot() {
+        return chariot;
+    }
+
+    public void setChariot(ArrayList<Character> chariot) {
+        this.chariot = chariot;
+    }
+
+
+    public void ajouterLettres(Character... lettres) {
+        for(Character c : lettres) chariot.add(c);
+    }
 
     public String toString() {
-        return "[Plateau](contien "+listeDeMots.size()+" mot(s))";
+        return "[Plateau](contien "+listeDeMots.size()+" mot(s), et les lettres sont "+chariot+")";
     }
 
     public void addMotPlacé(MotPositionne motJoué) {

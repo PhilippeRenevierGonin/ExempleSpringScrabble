@@ -12,7 +12,7 @@
 
 
     <groupId>prg.exemple</groupId>
-    <artifactId>serveur</artifactId>
+    <artifactId>moteur</artifactId>
     <version>1</version>
 
     <dependencies>

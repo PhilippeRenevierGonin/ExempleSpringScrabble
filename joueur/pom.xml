@@ -13,7 +13,7 @@
 
 
     <groupId>prg.exemple</groupId>
-    <artifactId>client</artifactId>
+    <artifactId>joueur</artifactId>
     <version>1</version>
 
 

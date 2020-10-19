@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import prg.exemple.demoscrabble.data.MotPositionne;
-import prg.exemple.demoscrabble.data.Plateau;
+import prg.exemple.demoscrabble.data.EtatDuJeu;
 
 @Component
 @Scope("singleton")
@@ -14,12 +14,12 @@ public class Moteur implements Runnable {
 
     Thread partie ;
 
-    Plateau plateau;
+    EtatDuJeu etatDuJeu;
 
     public void lancerPartie() {
         if (partie == null) {
             System.out.println("Moteur > la partie est démarrée");
-            plateau = new Plateau();
+            etatDuJeu = new EtatDuJeu();
             partie = new Thread(this);
             partie.start();
         } else {
@@ -30,11 +30,12 @@ public class Moteur implements Runnable {
     @Override
     public void run() {
         for(int nbTour = 0; nbTour < 2; nbTour++) {
+            etatDuJeu.ajouterLettres('a','b','c','d','m','o','t');
             MotPositionne motJoué = ctrl.demanderAuJoueurDeJoueur(getPlateau()) ;
-            System.out.println("Moteur > "+ctrl.getNomJoueur()+" a joué : "+motJoué+ " (il n'y a pas de vérificatoin)");
-            plateau.addMotPlacé(motJoué);
+            System.out.println("Moteur > "+ctrl.getNomJoueur()+" a joué : "+motJoué+ " (il n'y a pas de vérification)");
+            etatDuJeu.addMotPlacé(motJoué);
         }
-        System.out.println("Moteur > la partie est finie "+plateau);
+        System.out.println("Moteur > la partie est finie "+ etatDuJeu);
         partie = null;
 
         ctrl.envoyerFin();
@@ -43,8 +44,8 @@ public class Moteur implements Runnable {
     }
 
 
-    public Plateau getPlateau() {
-        return plateau;
+    public EtatDuJeu getPlateau() {
+        return etatDuJeu;
     }
 
 }

@@ -8,7 +8,7 @@ public class MotPositionne {
     private boolean honrizontal;
 
     public MotPositionne() {
-        this("mot", 0, 0, true);
+        this("motParDéfaut", 0, 0, true);
     }
 
 
@@ -59,5 +59,14 @@ public class MotPositionne {
         String dir = "horizontal";
         if (! getHonrizontal()) dir ="vertical";
         return "("+getMot()+","+getAbscisse()+","+getOrdonnée()+","+dir+")";
+    }
+
+    public boolean equals(Object o) {
+        if ((o != null) && (o instanceof MotPositionne)) {
+            MotPositionne p = (MotPositionne) o;
+            return (p.getHonrizontal() == getHonrizontal()) && (p.getOrdonnée() == getOrdonnée()) && (p.getAbscisse() == getAbscisse()) && (p.getMot().equals(getMot()));
+         }
+        else
+            return false;
     }
 }

@@ -27,6 +27,7 @@ public class MoteurWebControlleur {
     private RestTemplate restTemplate;
 
 
+
     @Autowired
     Moteur moteur;
 
@@ -41,7 +42,7 @@ public class MoteurWebControlleur {
     public MotPositionne demanderAuJoueurDeJoueur(EtatDuJeu p) {
         MotPositionne resultat = new MotPositionne();
         if (joueurId != null) {
-            resultat = restTemplate.postForObject(joueurId.getUrl()+"/jouer", p, MotPositionne.class);
+            resultat = restTemplate.postForObject(joueurId.getUrl()+"/jouer", p, MotPositionne.class); // le "/" de /jouer par sécurité
         }
         return resultat ;
     }

@@ -1,8 +1,9 @@
-package prg.exemple.demoscrabble;
+package prg.exemple.demoscrabble.moteur;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import prg.exemple.demoscrabble.webcontroller.MoteurWebControlleur;
 import prg.exemple.demoscrabble.data.MotPositionne;
 import prg.exemple.demoscrabble.data.EtatDuJeu;
 
@@ -14,7 +15,9 @@ public class Moteur implements Runnable {
 
     Thread partie ;
 
+
     EtatDuJeu etatDuJeu;
+    private boolean exitOnFinish = false;
 
     public void lancerPartie() {
         if (partie == null) {
@@ -40,7 +43,7 @@ public class Moteur implements Runnable {
 
         ctrl.envoyerFin();
         // fin brutale (pour abréger sur travis).
-        System.exit(0);
+        if (getExitOnFinish()) System.exit(0);
     }
 
 
@@ -48,4 +51,14 @@ public class Moteur implements Runnable {
         return etatDuJeu;
     }
 
+
+    public void aMethod() {}
+
+    public void setExitOnFinish(boolean exitOnFinish) {
+        this.exitOnFinish = exitOnFinish;
+    }
+
+    public boolean getExitOnFinish() {
+        return exitOnFinish;
+    }
 }

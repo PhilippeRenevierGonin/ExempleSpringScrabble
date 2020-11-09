@@ -1,4 +1,4 @@
-package prg.exemple.demoscrabble;
+package prg.exemple.demoscrabble.webcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -11,12 +11,13 @@ import org.springframework.web.client.RestTemplate;
 import prg.exemple.demoscrabble.data.Identification;
 import prg.exemple.demoscrabble.data.MotPositionne;
 import prg.exemple.demoscrabble.data.EtatDuJeu;
+import prg.exemple.demoscrabble.moteur.Moteur;
 
 @RestController
 public class MoteurWebControlleur {
     int value = 0;
 
-    private Identification joueurId;
+    Identification joueurId;
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {

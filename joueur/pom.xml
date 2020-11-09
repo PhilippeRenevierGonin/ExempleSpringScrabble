@@ -41,6 +41,24 @@
                         <goals>
                             <goal>java</goal>
                         </goals>
+                        <configuration>
+                            <mainClass>prg.exemple.demoscrabble.client.JoueurApplication</mainClass>  <!-- à changer : classe avec point d'entrée pour votre projet -->
+                        <arguments>
+                            <argument>autoconnect</argument>
+                        </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>IT</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>prg.exemple.demoscrabble.client.JoueurApplication</mainClass>
+                            <arguments>
+                                <argument>test->pas d'autoconnect</argument>
+                            </arguments>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
@@ -48,11 +66,10 @@
                     <!-- argument de la commande java (en plus du nom de la classe et du classpath -->
 
                     <!-- arguments récupérés dans le main -->
-                    <!--
+
                         <arguments>
-                                <argument>argument1</argument>
+                                <argument>autoconnect</argument>
                         </arguments>
-                    -->
 
                     <!-- arguments de configuration système -->
                     <!--

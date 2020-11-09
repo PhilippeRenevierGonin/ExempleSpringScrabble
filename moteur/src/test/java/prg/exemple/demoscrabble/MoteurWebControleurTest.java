@@ -13,6 +13,8 @@ import org.springframework.test.web.client.MockRestServiceServer;
 import prg.exemple.demoscrabble.data.EtatDuJeu;
 import prg.exemple.demoscrabble.data.Identification;
 import prg.exemple.demoscrabble.data.MotPositionne;
+import prg.exemple.demoscrabble.moteur.Moteur;
+import prg.exemple.demoscrabble.webcontroller.MoteurWebControlleur;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;

@@ -3,12 +3,24 @@ language: java
 jdk:
   - openjdk11
 
+cache:
+  directories:
+    - $HOME/.m2
+
+services:
+  - docker
+  -
 install:
   - mvn clean install -DskipTests
 
 script:
   - mvn test
+  - docker build joueur -t scrabble:joueur
   - cd moteur
+  - docker run -d --name joueur_test  -e LANCEMENT="POUR_LES_TEST" -p 8081:8081 scrabble:joueur
+  - mvn failsafe:integration-test -Dit.test=prg.exemple.demoscrabble.MoteurWebControleurITCase#demanderAuJoueurDeJoueurTest
+  - docker start joueur_test
+  - mvn failsafe:integration-test -Dit.test=prg.exemple.demoscrabble.MoteurWebControleurITCase#demanderAuJoueurDeJoueurTest2foisDeSuite
   - mvn exec:java &
   - cd ../joueur
   - mvn exec:java

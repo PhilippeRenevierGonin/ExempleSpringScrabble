@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import prg.exemple.demoscrabble.data.Identification;
 
+import java.net.InetAddress;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -35,6 +36,7 @@ public class JoueurApplication {
                 // les traces sont là juste pour montrer le déroulement et le lancement
                 System.out.println("----------------- début de joueur -----------------");
                 /// connexion
+                String adresse =  "http://"+InetAddress.getLocalHost().getHostAddress();
                 Identification monId = new Identification("Michel", "http://localhost:8081/");
                 Boolean val = restTemplate.postForObject("http://localhost:8080/connexion/", monId, Boolean.class);
                 // les traces sont là juste pour montrer le déroulement et le lancement

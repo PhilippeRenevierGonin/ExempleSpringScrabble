@@ -17,6 +17,8 @@ import prg.exemple.demoscrabble.data.MotPositionne;
 import prg.exemple.demoscrabble.moteur.Moteur;
 import prg.exemple.demoscrabble.webcontroller.MoteurWebControlleur;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -78,6 +80,9 @@ public class ConnexionTest {
         this.mockMvc.perform(post("/connexion/").contentType(MediaType.APPLICATION_JSON)
                 .content(paramConnexion)).andExpect(status().isOk())
                 .andExpect(content().string(containsString("true")));
+
+        TimeUnit.MILLISECONDS.sleep(500);
+
         verify(moteur, times(2)).lancerPartie(); // compte cumulé
         verify(moteur, times(1)).run(); // la 2e fois, le thread n'est pas lancer
     }

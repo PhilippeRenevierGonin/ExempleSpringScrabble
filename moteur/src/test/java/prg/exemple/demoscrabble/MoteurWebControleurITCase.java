@@ -123,7 +123,7 @@ mvn clean install -DskipTests
 mvn test
 docker build joueur -t scrabble:joueur
 cd moteur
-docker run -d --name joueur_test  -e LANCEMENT="POUR_LES_TEST" -p 8081:8081 scrabble:joueur
+docker run -d --name joueur_test  -e LANCEMENT="POUR_LES_TEST" -e PORT="8081" -p 8081:8081 scrabble:joueur
 mvn failsafe:integration-test -Dit.test=prg.exemple.demoscrabble.MoteurWebControleurITCase#demanderAuJoueurDeJoueurTest
 docker start joueur_test
 mvn failsafe:integration-test -Dit.test=prg.exemple.demoscrabble.MoteurWebControleurITCase#demanderAuJoueurDeJoueurTest2foisDeSuite

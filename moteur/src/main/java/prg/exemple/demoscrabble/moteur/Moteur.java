@@ -10,6 +10,7 @@ import prg.exemple.demoscrabble.data.EtatDuJeu;
 @Component
 @Scope("singleton")
 public class Moteur implements Runnable {
+
     @Autowired
     MoteurWebControlleur ctrl;
 

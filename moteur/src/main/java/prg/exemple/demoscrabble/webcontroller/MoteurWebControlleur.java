@@ -15,9 +15,11 @@ import prg.exemple.demoscrabble.moteur.Moteur;
 
 @RestController
 public class MoteurWebControlleur {
-    int value = 0;
-
     Identification joueurId;
+
+    @Autowired
+    Moteur moteur;
+
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -28,9 +30,12 @@ public class MoteurWebControlleur {
     private RestTemplate restTemplate;
 
 
+    // juste pour le MockMvcTest, sans param
+    @PostMapping("/essai/")
+    public boolean getValue() {
+        return true;
+    }
 
-    @Autowired
-    Moteur moteur;
 
     @PostMapping("/connexion/")
     public boolean getValue(@RequestBody Identification joueurId) {

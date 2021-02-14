@@ -73,6 +73,8 @@ public class ConnexionTest {
                 .content(paramConnexion)).andExpect(status().isOk())
                 .andExpect(content().string(containsString("true")));
 
+        TimeUnit.MILLISECONDS.sleep(500); // le temps pour travis de lancer le thread
+
         verify(moteur, times(1)).lancerPartie();
         verify(moteur, times(1)).run();
 

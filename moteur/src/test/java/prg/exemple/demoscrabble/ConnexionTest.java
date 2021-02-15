@@ -66,7 +66,6 @@ public class ConnexionTest {
     @Test
     public void shouldReturnTrue_theRealMethodWithParam() throws Exception {
         Identification id = new Identification();
-        id = new Identification();
         String paramConnexion = objectMapper.writeValueAsString(id);
 
         this.mockMvc.perform(post("/connexion/").contentType(MediaType.APPLICATION_JSON)
@@ -81,7 +80,7 @@ public class ConnexionTest {
 
         this.mockMvc.perform(post("/connexion/").contentType(MediaType.APPLICATION_JSON)
                 .content(paramConnexion)).andExpect(status().isOk())
-                .andExpect(content().string(containsString("true")));
+                .andExpect(content().string(containsString("false")));
 
         TimeUnit.MILLISECONDS.sleep(500);
 

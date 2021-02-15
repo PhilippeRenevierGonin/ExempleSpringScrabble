@@ -41,8 +41,7 @@ public class MoteurWebControlleur {
     public boolean getValue(@RequestBody Identification joueurId) {
         System.out.println("Moteur > connexion acceptée de "+joueurId.getNom());
         this.joueurId = joueurId;
-        moteur.lancerPartie();
-        return true;
+        return moteur.lancerPartie();
     }
 
     public MotPositionne demanderAuJoueurDeJoueur(EtatDuJeu p) {

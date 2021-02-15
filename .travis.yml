@@ -9,7 +9,7 @@ cache:
 
 services:
   - docker
-  -
+
 install:
   - mvn clean install -DskipTests
 

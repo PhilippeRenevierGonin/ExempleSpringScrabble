@@ -37,6 +37,7 @@ public class JoueurApplication {
                 System.out.println("----------------- début de joueur -----------------");
                 /// connexion
                 String adresse =  "http://"+InetAddress.getLocalHost().getHostAddress();
+                System.out.println("mon adresse = "+adresse);
                 Identification monId = new Identification("Michel", "http://localhost:8081/");
                 Boolean val = restTemplate.postForObject("http://localhost:8080/connexion/", monId, Boolean.class);
                 // les traces sont là juste pour montrer le déroulement et le lancement

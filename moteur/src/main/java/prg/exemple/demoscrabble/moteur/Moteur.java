@@ -20,8 +20,9 @@ public class Moteur implements Runnable {
     EtatDuJeu etatDuJeu;
     private boolean exitOnFinish = false;
 
-    public void lancerPartie() {
-        if (partie == null) {
+    public boolean lancerPartie() {
+        boolean result = (partie == null);
+        if (result) {
             System.out.println("Moteur > la partie est démarrée");
             etatDuJeu = new EtatDuJeu();
             partie = new Thread(this);
@@ -29,6 +30,7 @@ public class Moteur implements Runnable {
         } else {
             System.out.println("Moteur > la partie est déjà démarrée");
         }
+        return result;
     }
 
     @Override

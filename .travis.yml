@@ -2,6 +2,9 @@ language: java
 
 jdk:
   - openjdk11
+  
+env:
+  - NB_JOUEURS=3
 
 cache:
   directories:
@@ -15,6 +18,7 @@ install:
 
 script:
   - docker version
+  - echo "nb joueurs = $NB_JOUEURS "
   - mvn test
   - docker build joueur -t scrabble:joueur
   - cd moteur

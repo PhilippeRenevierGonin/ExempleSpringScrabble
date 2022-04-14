@@ -2,6 +2,7 @@ package prg.exemple.demoscrabble;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
@@ -33,7 +34,10 @@ public class MoteurWebControleurTest {
     MoteurWebControlleur webControlleurTesté;
 
     @Autowired
-    private MockRestServiceServer server;
+    private MockRestServiceServer server;   // uniquement avec restTemplate, pas avec web client...
+    // piste = MockWebServer https://www.baeldung.com/spring-mocking-webclient c'est un truc extérieur...
+    // idem https://blog.mimacom.com/spring-webclient-testing/
+
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -57,6 +61,7 @@ public class MoteurWebControleurTest {
 
     }
 
+    @Disabled("test en simulant des services distants à mettre à jour")
     @Test
     void demanderAuJoueurDeJoueurTest() {
         // pour que le controlleur ait un joueur...
@@ -68,4 +73,7 @@ public class MoteurWebControleurTest {
 
         assertEquals(réponse, webControlleurTesté.demanderAuJoueurDeJoueur(etat));
     }
+
+    /* java.lang.IllegalStateException: Unable to use auto-configured MockRestServiceServer since MockServerRestTemplateCustomizer has not been bound to a RestTemplate
+        at prg.exemple.demoscrabble.MoteurWebControleurTest.demanderAuJoueurDeJoueurTest(MoteurWebControleurTest.java:67)*/
 }

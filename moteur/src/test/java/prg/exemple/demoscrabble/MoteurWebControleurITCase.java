@@ -74,7 +74,8 @@ public class MoteurWebControleurITCase {
         // error to verify it is a good spy // verify(mSpy, times(16)).aMethod();
 
         // normalement, à la fin le client est éteint
-        assertThrows(org.springframework.web.client.ResourceAccessException.class, () -> mSpy.run());
+        // changement restTemplate -> WebClient // assertThrows(org.springframework.web.client.ResourceAccessException.class, () -> mSpy.run());
+        assertThrows(org.springframework.web.reactive.function.client.WebClientRequestException.class, () -> mSpy.run());
 
         // etc.
 
@@ -112,7 +113,7 @@ public class MoteurWebControleurITCase {
         // error to verify it is a good spy // verify(mSpy, times(16)).aMethod();
 
         // normalement, à la fin le client est éteint
-        assertThrows(org.springframework.web.client.ResourceAccessException.class, () -> mSpy.run());
+        assertThrows(org.springframework.web.reactive.function.client.WebClientRequestException.class, () -> mSpy.run());
 
         // etc.
 

@@ -33,3 +33,6 @@ Joueur -> Moteur
  
  ## étape5 : échange d'objet (JSON est masquée)
 branchement sur travis-ci
+
+ ## étape6 : passage à webclient
+les restTemplate sont "depreaceted"

@@ -7,6 +7,7 @@ env:
   - NB_JOUEURS=3
 # variable inutile, juste là pour montrer comment on pourrait faire (et cela servirait dans les Dockerfile)
 
+
 cache:
   directories:
     - $HOME/.m2

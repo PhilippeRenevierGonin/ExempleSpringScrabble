@@ -1,13 +1,11 @@
 package prg.exemple.demoscrabble.webcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import prg.exemple.demoscrabble.data.Identification;
 import prg.exemple.demoscrabble.data.MotPositionne;
@@ -21,20 +19,9 @@ import static org.springframework.web.reactive.function.BodyInserters.fromMultip
 public class MoteurWebControlleur {
     Identification joueurId;
 
-
     @Autowired
     Moteur moteur;
 
-
-    /*
-    @Bean
-    public WebClient restTemplate(WebClient.Builder builder) {
-        // Do any additional configuration here
-        return builder.baseUrl("http://localhost:8081").build();   //@TODO URL EN DUR
-    }
-    @Autowired
-
-     */
     private WebClient webClient;
 
 
@@ -57,7 +44,7 @@ public class MoteurWebControlleur {
         MotPositionne resultat = new MotPositionne();
         if (joueurId != null) {
             // resultat = webClient.postForObject(joueurId.getUrl()+"/jouer", p, MotPositionne.class); // le "/" de /jouer par sécurité
-            resultat = webClient.post().uri("/jouer").contentType(MediaType.APPLICATION_JSON).body(Mono.just(p),EtatDuJeu.class).accept(MediaType.APPLICATION_JSON).retrieve().bodyToMono(MotPositionne.class).block(); // block pour être synchrone
+            resultat = webClient.post().uri("/jouer").contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(p)).accept(MediaType.APPLICATION_JSON).retrieve().bodyToMono(MotPositionne.class).block(); // block pour être synchrone
         }
         return resultat ;
     }
@@ -78,11 +65,8 @@ public class MoteurWebControlleur {
         String perceval = webClient.post().uri("/plein").retrieve().bodyToMono(String.class).block();
         System.out.println(">> recu : "+perceval);
         */
-
-        webClient.post().uri("/finir").contentType(MediaType.APPLICATION_JSON).body(Mono.just(true),Boolean.class).retrieve().bodyToMono(Void.class).block();
-
+        webClient.post().uri("/finir").contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(true)).retrieve().bodyToMono(Void.class).block();
 
         System.out.println(">> finir a été envoyé");
-
     }
 }

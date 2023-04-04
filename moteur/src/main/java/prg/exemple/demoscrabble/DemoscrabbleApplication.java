@@ -14,6 +14,7 @@ import prg.exemple.demoscrabble.data.Identification;
 import prg.exemple.demoscrabble.moteur.Moteur;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class DemoscrabbleApplication {
@@ -27,11 +28,12 @@ public class DemoscrabbleApplication {
 	public CommandLineRunner aGame(@Autowired Moteur moteur) {
 		return args -> {
 			System.out.println("************************** aGame **************************************");
+			System.out.println(Arrays.toString(args));
+			System.out.println(args.length);
 
 			// pour faire la différence entre un lancement via les tests et un lancement par mvn exec:java@id
 			if (args.length >0) {
 				moteur.setExitOnFinish(true);
-
 			}
 		};
 	}

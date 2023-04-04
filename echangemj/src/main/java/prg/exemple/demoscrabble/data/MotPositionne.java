@@ -1,10 +1,12 @@
 package prg.exemple.demoscrabble.data;
 
+import java.util.Objects;
+
 public class MotPositionne {
 
     private String mot;
     private int abscisse;
-    private int ordonnée;
+    private int ordonnee;
     private boolean honrizontal;
 
     public MotPositionne() {
@@ -19,7 +21,7 @@ public class MotPositionne {
     public MotPositionne(String mot, int x, int y, boolean honrizontal) {
         setMot(mot);
         setAbscisse(x);
-        setOrdonnée(y);
+        setOrdonnee(y);
         setHonrizontal(honrizontal);
     }
 
@@ -39,12 +41,12 @@ public class MotPositionne {
         return abscisse;
     }
 
-    public void setOrdonnée(int ordonnée) {
-        this.ordonnée = ordonnée;
+    public void setOrdonnee(int ordonnee) {
+        this.ordonnee = ordonnee;
     }
 
-    public int getOrdonnée() {
-        return ordonnée;
+    public int getOrdonnee() {
+        return ordonnee;
     }
 
     public void setHonrizontal(boolean honrizontal) {
@@ -58,15 +60,19 @@ public class MotPositionne {
     public String toString() {
         String dir = "horizontal";
         if (! getHonrizontal()) dir ="vertical";
-        return "("+getMot()+","+getAbscisse()+","+getOrdonnée()+","+dir+")";
+        return "("+getMot()+","+getAbscisse()+","+ getOrdonnee()+","+dir+")";
     }
 
+    @Override
     public boolean equals(Object o) {
-        if ((o != null) && (o instanceof MotPositionne)) {
-            MotPositionne p = (MotPositionne) o;
-            return (p.getHonrizontal() == getHonrizontal()) && (p.getOrdonnée() == getOrdonnée()) && (p.getAbscisse() == getAbscisse()) && (p.getMot().equals(getMot()));
-         }
-        else
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MotPositionne that = (MotPositionne) o;
+        return abscisse == that.abscisse && ordonnee == that.ordonnee && honrizontal == that.honrizontal && Objects.equals(mot, that.mot);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mot, abscisse, ordonnee, honrizontal);
     }
 }

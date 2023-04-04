@@ -10,12 +10,10 @@ import prg.exemple.demoscrabble.data.EtatDuJeu;
 @Component
 @Scope("singleton")
 public class Moteur implements Runnable {
-
     @Autowired
     MoteurWebControlleur ctrl;
 
     Thread partie ;
-
 
     EtatDuJeu etatDuJeu;
     private boolean exitOnFinish = false;
@@ -37,9 +35,9 @@ public class Moteur implements Runnable {
     public void run() {
         for(int nbTour = 0; nbTour < 2; nbTour++) {
             etatDuJeu.ajouterLettres('a','b','c','d','m','o','t');
-            MotPositionne motJoué = ctrl.demanderAuJoueurDeJoueur(getPlateau()) ;
-            System.out.println("Moteur > "+ctrl.getNomJoueur()+" a joué : "+motJoué+ " (il n'y a pas de vérification)");
-            etatDuJeu.addMotPlacé(motJoué);
+            MotPositionne motJoue = ctrl.demanderAuJoueurDeJoueur(etatDuJeu) ;
+            System.out.println("Moteur > "+ctrl.getNomJoueur()+" a joué : "+motJoue+ " (il n'y a pas de vérification)");
+            etatDuJeu.addMotPlace(motJoue);
         }
         System.out.println("Moteur > la partie est finie "+ etatDuJeu);
         partie = null;

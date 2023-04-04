@@ -1,11 +1,25 @@
 package prg.exemple.demoscrabble.data;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class EtatDuJeu {
     ArrayList<MotPositionne> listeDeMots ;
     ArrayList<Character> chariot;
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EtatDuJeu etatDuJeu = (EtatDuJeu) o;
+        return Objects.equals(listeDeMots, etatDuJeu.listeDeMots) && Objects.equals(chariot, etatDuJeu.chariot);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(listeDeMots, chariot);
+    }
 
     public EtatDuJeu() {
         listeDeMots = new ArrayList<>();
@@ -34,10 +48,10 @@ public class EtatDuJeu {
     }
 
     public String toString() {
-        return "[Plateau](contien "+listeDeMots.size()+" mot(s), et les lettres sont "+chariot+")";
+        return "[Plateau](contient "+listeDeMots.size()+" mot(s), et les lettres sont "+chariot+")";
     }
 
-    public void addMotPlacé(MotPositionne motJoué) {
-        this.listeDeMots.add(motJoué);
+    public void addMotPlace(MotPositionne motJoue) {
+        this.listeDeMots.add(motJoue);
     }
 }

@@ -1,6 +1,7 @@
 package prg.exemple.demoscrabble;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -16,17 +17,14 @@ import prg.exemple.demoscrabble.webcontroller.MoteurWebControlleur;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class MoteurWebControleurITCase {
-
     // data
     Identification id ;
     EtatDuJeu etat;
@@ -39,6 +37,8 @@ public class MoteurWebControleurITCase {
 
     Moteur mSpy;
 
+    Object synchro = new Object();
+
     @BeforeEach
     void setUp()throws Exception {
         id = new Identification("Joueur pour intégration", "http://127.0.0.1:8081/");
@@ -50,17 +50,35 @@ public class MoteurWebControleurITCase {
 
     @Test
     void demanderAuJoueurDeJoueurTest() {
+
+        doAnswer((invocation) -> {
+            invocation.callRealMethod();
+            synchronized (synchro) { synchro.notifyAll(); }
+            return null;}).when(webControlleur).envoyerFin();
+
         // pour que le controlleur ait un joueur...
         // l'appel extérieur qui lance tout
         webControlleur.getValue(id);
 
-        // some code are in a thread...
+        /*
+        // some code are in a thread... solution ici de facilité...
         try {
             TimeUnit.MILLISECONDS.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        */
 
+        synchronized (synchro) {
+            try {
+                System.err.println("on a attend la synchro, ce message ne devrait pas exister");
+                synchro.wait();
+                System.err.println("on a fini la synchro, ce message ne devrait pas exister");
+            } catch (InterruptedException e) {
+                fail("pas de synchro entre le code et le test");
+            }
+
+        }
 
         verify(mSpy, times(1)).lancerPartie();
         verify(webControlleur, times(2)).demanderAuJoueurDeJoueur(any());
@@ -83,22 +101,38 @@ public class MoteurWebControleurITCase {
 
 
 
-    // un test est possible avec le lancement d'une  docker. IL
-
+    // un test est possible avec le lancement d'une  docker.
     @Test
     void demanderAuJoueurDeJoueurTest2foisDeSuite() {
+
+        doAnswer((invocation) -> {
+            invocation.callRealMethod(); // on appelle la vraie méthode
+            synchronized (synchro) { synchro.notifyAll(); } // on notife le test
+            return null;}).when(webControlleur).envoyerFin();
+
         // pour que le controlleur ait un joueur...
 
         webControlleur.getValue(id);
         webControlleur.getValue(id);
 
-        // some code are in a thread...
+        /*
+        // some code are in a thread... solution de facilité
         try {
             TimeUnit.MILLISECONDS.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        */
+        synchronized (synchro) {
+            try {
+                System.err.println("on a attend la synchro, ce message ne devrait pas exister");
+                synchro.wait();
+                System.err.println("on a fini la synchro, ce message ne devrait pas exister");
+            } catch (InterruptedException e) {
+                fail("pas de synchro entre le code et le test");
+            }
 
+        }
 
         // 2 fois lancerPartie, mais une seule avec effet... comme c'est un sout, on ne peut pas vérfier la 2e fois si ce n'est que le reste ne change pas
         verify(mSpy, times(2)).lancerPartie();

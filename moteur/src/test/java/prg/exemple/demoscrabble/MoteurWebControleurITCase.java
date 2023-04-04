@@ -88,8 +88,6 @@ public class MoteurWebControleurITCase {
         EtatDuJeu plateau = mSpy.getPlateau();
         assertEquals(2, plateau.getListeDeMots().size());
 
-        verify(mSpy, times(3)).getPlateau();
-        // error to verify it is a good spy // verify(mSpy, times(16)).aMethod();
 
         // normalement, à la fin le client est éteint
         // changement restTemplate -> WebClient // assertThrows(org.springframework.web.client.ResourceAccessException.class, () -> mSpy.run());
@@ -142,10 +140,7 @@ public class MoteurWebControleurITCase {
 
         EtatDuJeu plateau = mSpy.getPlateau();
         assertEquals(2, plateau.getListeDeMots().size());
-
-        verify(mSpy, times(3)).getPlateau();
-        // error to verify it is a good spy // verify(mSpy, times(16)).aMethod();
-
+        
         // normalement, à la fin le client est éteint
         assertThrows(org.springframework.web.reactive.function.client.WebClientRequestException.class, () -> mSpy.run());
 

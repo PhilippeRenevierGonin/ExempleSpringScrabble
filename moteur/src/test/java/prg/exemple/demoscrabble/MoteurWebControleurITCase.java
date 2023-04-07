@@ -140,7 +140,7 @@ public class MoteurWebControleurITCase {
 
         EtatDuJeu plateau = mSpy.getPlateau();
         assertEquals(2, plateau.getListeDeMots().size());
-        
+
         // normalement, à la fin le client est éteint
         assertThrows(org.springframework.web.reactive.function.client.WebClientRequestException.class, () -> mSpy.run());
 

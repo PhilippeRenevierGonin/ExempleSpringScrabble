@@ -55,15 +55,16 @@ public class ConnexionTest {
         Identification id = new Identification();
         String paramConnexion = objectMapper.writeValueAsString(id);
 
-        Object synchro = new Object();
-
         // pour synchro test et code
         when(moteur.lancerPartie()).thenReturn(true);
 
 
 
-        this.mockMvc.perform(post("/connexion/").contentType(MediaType.APPLICATION_JSON)
-                .content(paramConnexion)).andExpect(status().isOk())
+        this.mockMvc.perform(
+                post("/connexion/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(paramConnexion))
+                .andExpect(status().isOk())
                 .andExpect(content().string(containsString("true")));
 
 

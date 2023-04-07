@@ -79,7 +79,8 @@ public class SenarioExterieurFacticeTest {
 
 
         MotPositionne [] reponse = new MotPositionne[2];
-        String [] reponseRetournee = new String[reponse.length];        reponse[0] = new MotPositionne("toto", 7,7);
+        String [] reponseRetournee = new String[reponse.length];
+        reponse[0] = new MotPositionne("toto", 7,7);
         reponseRetournee[0] = objectMapper.writeValueAsString(reponse[0]);
         mockWebServer.enqueue(new MockResponse().setResponseCode(200)
                 .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

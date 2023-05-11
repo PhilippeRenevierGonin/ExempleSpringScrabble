@@ -11,7 +11,6 @@ import prg.exemple.demoscrabble.data.Identification;
 import prg.exemple.demoscrabble.data.MotPositionne;
 import prg.exemple.demoscrabble.data.EtatDuJeu;
 import prg.exemple.demoscrabble.moteur.Moteur;
-import reactor.core.publisher.Mono;
 
 import static org.springframework.web.reactive.function.BodyInserters.fromMultipartData;
 
@@ -27,13 +26,13 @@ public class MoteurWebControlleur {
 
     // juste pour le MockMvcTest, sans param
     @PostMapping("/essai/")
-    public boolean getValue() {
+    public boolean nouveauJoueur() {
         return true;
     }
 
 
     @PostMapping("/connexion/")
-    public boolean getValue(@RequestBody Identification joueurId) {
+    public boolean nouveauJoueur(@RequestBody Identification joueurId) {
         System.out.println("Moteur > connexion acceptée de "+joueurId.getNom());
         this.joueurId = joueurId;
         webClient = WebClient.create(joueurId.getUrl());
@@ -69,4 +68,6 @@ public class MoteurWebControlleur {
 
         System.out.println(">> finir a été envoyé");
     }
+
+
 }

@@ -129,7 +129,7 @@ public class SenarioExterieurFacticeTest {
 
 
 
-        ordreAppel.verify(webControlleur, times(1)).getValue(id);
+        ordreAppel.verify(webControlleur, times(1)).nouveauJoueur(id);
         ordreAppel.verify(moteur, times(1)).lancerPartie();
         ordreAppel.verify(moteur, times(1)).run();
         ordreAppel.verify(webControlleur, times(1)).demanderAuJoueurDeJoueur(any());

@@ -2,12 +2,12 @@ package prg.exemple.demoscrabble.moteur;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import prg.exemple.demoscrabble.webcontroller.MoteurWebControlleur;
 import prg.exemple.demoscrabble.data.MotPositionne;
 import prg.exemple.demoscrabble.data.EtatDuJeu;
 
-@Component
+@Service
 @Scope("singleton")
 public class Moteur implements Runnable {
     @Autowired

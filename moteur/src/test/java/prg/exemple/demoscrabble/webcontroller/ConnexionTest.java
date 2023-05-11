@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import prg.exemple.demoscrabble.data.Identification;
 import prg.exemple.demoscrabble.moteur.Moteur;
@@ -69,7 +68,7 @@ public class ConnexionTest {
 
 
 
-        verify(webControlleur, times(1)).getValue(id);
+        verify(webControlleur, times(1)).nouveauJoueur(id);
         verify(moteur, times(1)).lancerPartie();
 
 

@@ -71,7 +71,7 @@ public class TestsAvecDesAppelsExterieurTest {
     @Test
     void demanderAuJoueurDeJoueurTest() throws InterruptedException {
         // pour que le controlleur ait un joueur...
-        webControlleurTeste.getValue(id);
+        webControlleurTeste.nouveauJoueur(id);
         Mockito.verify(moteur, Mockito.times(1)).lancerPartie();
 
 
@@ -92,7 +92,7 @@ public class TestsAvecDesAppelsExterieurTest {
     @Test
     void appelsALaSuite_demanderAuJoueurDeJoueurTest2() throws InterruptedException, JsonProcessingException {
         // pour que le controlleur ait un joueur...
-        webControlleurTeste.getValue(id);
+        webControlleurTeste.nouveauJoueur(id);
         Mockito.verify(moteur, Mockito.times(1)).lancerPartie();
 
         // 1er requete

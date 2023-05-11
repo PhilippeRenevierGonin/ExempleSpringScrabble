@@ -1,7 +1,6 @@
 package prg.exemple.demoscrabble;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -14,8 +13,6 @@ import prg.exemple.demoscrabble.data.EtatDuJeu;
 import prg.exemple.demoscrabble.data.Identification;
 import prg.exemple.demoscrabble.moteur.Moteur;
 import prg.exemple.demoscrabble.webcontroller.MoteurWebControlleur;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -58,7 +55,7 @@ public class MoteurWebControleurITCase {
 
         // pour que le controlleur ait un joueur...
         // l'appel extérieur qui lance tout
-        webControlleur.getValue(id);
+        webControlleur.nouveauJoueur(id);
 
         /*
         // some code are in a thread... solution ici de facilité...
@@ -110,8 +107,8 @@ public class MoteurWebControleurITCase {
 
         // pour que le controlleur ait un joueur...
 
-        webControlleur.getValue(id);
-        webControlleur.getValue(id);
+        webControlleur.nouveauJoueur(id);
+        webControlleur.nouveauJoueur(id);
 
         /*
         // some code are in a thread... solution de facilité

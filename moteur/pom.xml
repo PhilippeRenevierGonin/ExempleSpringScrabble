@@ -36,7 +36,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M6</version>
+                <version>3.2.5</version>
             </plugin>
 
             <plugin>
@@ -48,7 +48,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.0.0</version> <!-- à ne pas changer : c'est la version du plugin (et pas de java) -->
+                <version>3.1.1</version> <!-- à ne pas changer : c'est la version du plugin (et pas de java) -->
                 <executions>
                     <execution>
                         <goals>

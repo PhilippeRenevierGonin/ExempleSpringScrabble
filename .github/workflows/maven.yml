@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "webclient_action_docker" ]
+    branches: [ "webclient" ]
   pull_request:
-    branches: [ "webclient_action_docker" ]
+    branches: [ "webclient" ]
 
 jobs:
   build:

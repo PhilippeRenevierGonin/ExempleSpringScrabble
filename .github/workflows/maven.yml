@@ -1,0 +1,51 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "webclient_action_docker" ]
+  pull_request:
+    branches: [ "webclient_action_docker" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
+
+      - name: Test with Maven
+        run: mvn test
+
+      - name: Build the Docker image
+        run: |
+          docker build joueur -t scrabble:joueur
+
+      - name: Test integration avec Maven et docker
+        run: |
+          cd moteur
+          docker run -d --name joueur_test -e PORT="8081" -e LANCEMENT="POUR_LES_TEST" -p 8081:8081 scrabble:joueur
+          mvn failsafe:integration-test -Dit.test=prg.exemple.demoscrabble.MoteurWebControleurITCase#demanderAuJoueurDeJoueurTest
+          docker start joueur_test
+          mvn failsafe:integration-test -Dit.test=prg.exemple.demoscrabble.MoteurWebControleurITCase#demanderAuJoueurDeJoueurTest2foisDeSuite
+
+      - name: exec
+        run : |
+          mvn exec:java -Dexec.args="closingAtTheEnd" -pl moteur &
+          mvn exec:java -pl joueur

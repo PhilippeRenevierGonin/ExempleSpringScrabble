@@ -12,7 +12,6 @@ import prg.exemple.demoscrabble.data.MotPositionne;
 import prg.exemple.demoscrabble.data.EtatDuJeu;
 import prg.exemple.demoscrabble.moteur.Moteur;
 
-import static org.springframework.web.reactive.function.BodyInserters.fromMultipartData;
 
 @RestController
 public class MoteurWebControlleur {
